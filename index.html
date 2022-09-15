@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Les Petits Plats</title>
+    <link rel="icon" type="image/x-icon" href="assets/logo/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+</head>
+
+<body>
+
+    <nav>
+
+        <figure>
+            <img src="assets/logo/logo.svg" alt="logo">
+        </figure>
+
+        <form>
+            <div class="search">
+                <input type="text" id="js-search-input" class="search--input" placeholder="Rechercher une recette">
+                <i class="fas fa-search"></i>
+            </div>
+                
+            <div class="tags-section">
+            </div>
+
+
+            <div class="filters-section">
+
+                <span class="filter filter-ingredients">
+                    <label class="label-ingredients" for="ingredients">Ingrédients</label>
+                    <input placeholder="Rechercher un ingrédient" autocomplete="off" list="" role="combobox" name="data" class="filter-input" id="ingredients">
+                    <datalist id="data-ingredients" class="data-ingredients" role="listbox">
+                        <!--<option value="Lait de coco">Lait de coco</option>
+                        <option value="Jus de citron">Jus de citron</option>
+                        <option value="Crème de coco">Crème de coco</option>
+                        <option value="Sucre">Sucre</option>
+                        <option value="Glaçons">Glaçons</option>
+                        <option value="Thon rouge">Thon rouge</option>
+                        <option value="Concombre">Concombre</option>
+                        <option value="Tomate">Tomate</option>
+                        <option value="Carotte">Carotte</option>
+                        <option value="Citron vert">Citron vert</option>
+                        <option value="Poulet">Poulet</option>
+                        <option value="Coulis de tomate">Coulis de tomate</option>
+                        <option value="Oignon">Oignon</option>
+                        <option value="Poivron rouge">Poivron rouge</option>
+                        <option value="Huile d'olive">Huile d'olive</option>
+                        <option value="Riz blanc">Riz blanc</option>
+                        <option value="Thon en miettes">Thon en miettes</option>
+                        <option value="Oeuf dur">Oeuf dur</option>
+                        <option value="Maïs">Maïs</option>
+                        <option value="Vinaigrette">Vinaigrette</option>
+                        <option value="Pâte feuilletée">Pâte feuilletée</option>
+                        <option value="Crème fraîche">Crème fraîche</option>
+                        <option value="Gruyère râpé">Gruyère râpé</option>
+                        <option value="Moutarde de Dijon">Moutarde de Dijon</option>
+                        <option value="Pomme">Pomme</option>
+                        <option value="Oeuf">Oeuf</option>
+                        <option value="Sucre en poudre">Sucre en poudre</option>
+                        <option value="Chocolat au lait">Chocolat au lait</option>
+                        <option value="Crème liquide">Crème liquide</option>
+                        <option value="Beurre">Beurre</option>-->
+                    </datalist>
+                </span>
+
+                <span class="filter filter-appareils">
+                    <label class="label-appareils" for="appareils">Appareils</label>
+                    <input placeholder="Rechercher un appareil" autocomplete="off" list="" role="combobox" name="data" class="filter-input" id="appareils">
+                    <datalist id="data-appareils" class="data-appareils" role="listbox">
+                        <!--<option value="Lait de coco">Lait de coco</option>
+                        <option value="Jus de citron">Jus de citron</option>
+                        <option value="Crème de coco">Crème de coco</option>
+                        <option value="Sucre">Sucre</option>
+                        <option value="Glaçons">Glaçons</option>
+                        <option value="Thon rouge">Thon rouge</option>
+                        <option value="Concombre">Concombre</option>
+                        <option value="Tomate">Tomate</option>
+                        <option value="Carotte">Carotte</option>
+                        <option value="Citron vert">Citron vert</option>
+                        <option value="Poulet">Poulet</option>
+                        <option value="Coulis de tomate">Coulis de tomate</option>
+                        <option value="Oignon">Oignon</option>
+                        <option value="Poivron rouge">Poivron rouge</option>
+                        <option value="Huile d'olive">Huile d'olive</option>
+                        <option value="Riz blanc">Riz blanc</option>
+                        <option value="Thon en miettes">Thon en miettes</option>
+                        <option value="Oeuf dur">Oeuf dur</option>
+                        <option value="Maïs">Maïs</option>
+                        <option value="Vinaigrette">Vinaigrette</option>
+                        <option value="Pâte feuilletée">Pâte feuilletée</option>
+                        <option value="Crème fraîche">Crème fraîche</option>
+                        <option value="Gruyère râpé">Gruyère râpé</option>
+                        <option value="Moutarde de Dijon">Moutarde de Dijon</option>
+                        <option value="Pomme">Pomme</option>
+                        <option value="Oeuf">Oeuf</option>
+                        <option value="Sucre en poudre">Sucre en poudre</option>
+                        <option value="Chocolat au lait">Chocolat au lait</option>
+                        <option value="Crème liquide">Crème liquide</option>
+                        <option value="Beurre">Beurre</option>
+                        -->
+                    </datalist>
+                </span>
+
+                <span class="filter filter-ustensils">
+                    <label class="label-ustensils" for="ustensils">Ustensils</label>
+                    <input placeholder="Rechercher un ustensil" autocomplete="off" list="" role="combobox" name="data" class="filter-input" id="ustensils">
+                    <datalist id="data-ustensils" class="data-ustensils" role="listbox">
+                        <!--<option value="Lait de coco">Lait de coco</option>
+                        <option value="Jus de citron">Jus de citron</option>
+                        <option value="Crème de coco">Crème de coco</option>
+                        <option value="Sucre">Sucre</option>
+                        <option value="Glaçons">Glaçons</option>
+                        <option value="Thon rouge">Thon rouge</option>
+                        <option value="Concombre">Concombre</option>
+                        <option value="Tomate">Tomate</option>
+                        <option value="Carotte">Carotte</option>
+                        <option value="Citron vert">Citron vert</option>
+                        <option value="Poulet">Poulet</option>
+                        <option value="Coulis de tomate">Coulis de tomate</option>
+                        <option value="Oignon">Oignon</option>
+                        <option value="Poivron rouge">Poivron rouge</option>
+                        <option value="Huile d'olive">Huile d'olive</option>
+                        <option value="Riz blanc">Riz blanc</option>
+                        <option value="Thon en miettes">Thon en miettes</option>
+                        <option value="Oeuf dur">Oeuf dur</option>
+                        <option value="Maïs">Maïs</option>
+                        <option value="Vinaigrette">Vinaigrette</option>
+                        <option value="Pâte feuilletée">Pâte feuilletée</option>
+                        <option value="Crème fraîche">Crème fraîche</option>
+                        <option value="Gruyère râpé">Gruyère râpé</option>
+                        <option value="Moutarde de Dijon">Moutarde de Dijon</option>
+                        <option value="Pomme">Pomme</option>
+                        <option value="Oeuf">Oeuf</option>
+                        <option value="Sucre en poudre">Sucre en poudre</option>
+                        <option value="Chocolat au lait">Chocolat au lait</option>
+                        <option value="Crème liquide">Crème liquide</option>
+                        <option value="Beurre">Beurre</option>
+                        -->
+                    </datalist>
+                </span>
+
+            </div>
+        </form>
+    </nav>
+
+    <main>
+        <section class="recipes-list"></section> 
+    </main>
+
+
+    <script type="module" src="scripts/main.js"></script>
+    <!--<script type="module" src="scripts/utils/filters.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "maximetanguy_7_07082022",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mxtgy/Maximetanguy_7_07082022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mxtgy/Maximetanguy_7_07082022/issues"
+  },
+  "homepage": "https://github.com/Mxtgy/Maximetanguy_7_07082022#readme",
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  }
+}

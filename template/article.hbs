@@ -1,0 +1,20 @@
+    <article id="{{id}}">
+        <figure>
+            <img src="assets/img.png" alt="">
+        </figure>
+        <div class="recipe-wrap">
+            <div class="recipe-head">
+                <span class="recipe-title">{{name}}</span>
+                <span class="recipe-time">{{time}} min</span>
+            </div>
+            <div class="recipe-bottom">
+                <ul class="recipe-ingredients">
+                    {{#each ingredients}}
+                        <li><strong>{{ingredient}}
+                            {{#if quantity}}:{{/if}}</strong> {{quantity}} {{unit}}</li>
+                    {{/each}}
+                </ul>
+                <p class="recipe-description">{{description}}</p>
+            </div>
+        </div>
+    </article>

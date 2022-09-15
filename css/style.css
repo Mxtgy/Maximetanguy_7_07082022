@@ -1,0 +1,15 @@
+@import url("searchbar.css");
+@import url("tags.css");
+@import url("filters.css");
+@import url("recipes.css");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto&display=swap');
+
+body {
+    margin: 2em 6em;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+nav {
+    margin: 0 auto 2em;
+}

@@ -1,0 +1,127 @@
+/*
+TRI
+*/
+.filters-section {
+    text-align: left;
+    margin-top: 1em;
+}
+
+
+.filter {
+    display: inline-flex;
+    position: relative;
+    width: 13%;
+    margin-right: .8em;
+}
+
+.filter::after {
+    content: '\f077';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    color: #fff;
+    top: 33%;
+    right: 11%;
+    transform: rotate(180deg);
+    cursor: pointer;
+}
+
+.filter.active {
+    width: 50%;
+}
+
+.filter.active::after {
+    transform: rotate(0);
+    right: 3%;
+}
+.filter label {
+    color: #FFFFFF;
+    position: absolute;
+    top: 27%;
+    left: 10%;
+    font-size: 1.1em;
+    pointer-events: none;
+}
+.filter-input {
+    color: #FFFFFF;
+    outline: none;
+    border-radius: 5px;
+    padding: 1em 1em;
+    border: none;
+    font-size: 1.1em;
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+#ingredients {
+    background-color: #3282F7;
+}
+#appareils {
+    background-color: #68D9A4;
+}
+#ustensils {
+    background-color: #ED6454;
+}
+.filter-input::placeholder {
+    color: #ffffff;
+    opacity: 0;
+}
+
+.filter.active .filter-input {
+    border-radius: 5px 5px 0 0;
+    padding-left: 3.5%;
+}
+.filter.active .filter-input::placeholder {
+    opacity: .5;
+}
+
+.filter datalist {
+    box-sizing: border-box;
+    position: absolute;
+    color: #FFFFFF;
+    display: none;
+    top: 100%;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    flex-flow: wrap;
+    padding: .1em 1em 1em 1.5em;
+    justify-content: space-between;
+}
+
+.filter .data-ingredients {
+    background-color: #3282F7;
+}
+.filter .data-appareils {
+    background-color: #68D9A4;
+}
+.filter .data-ustensils {
+    background-color: #ED6454;
+}
+
+.filter.active datalist {
+    display: flex;
+    text-align: center;
+    z-index: 1;
+}
+
+.filter option {
+    max-width: 27%;
+    width: 100%;
+    margin: .3em 0;
+    padding: 0;
+    display: inline-block;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: all;
+}
+
+.filter .option-none {
+    display: none!important;
+}
+.filter.active label {
+    display: none;
+}
