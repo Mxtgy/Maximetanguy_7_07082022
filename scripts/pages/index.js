@@ -1,9 +1,9 @@
-import { RECIPES_SECTION, RECIPES, RECIPES_IDS } from '../utils/const.js';
+import { SEARCH_INPUT, RECIPES_SECTION, RECIPES, RECIPES_IDS, INGREDIENTS_ARRAY, APPAREILS_ARRAY, USTENSILS_ARRAY } from '../utils/const.js';
 import recipeFactory from '../factories/recipeFactory.js';
 import addOptionInDataList from '../utils/addOptionInDataList.js';
 import makeOptionList from '../utils/makeOptionList.js';
 import initFilters from '../utils/filters.js';
-/*import initSearchbar from '../utils/searchbar.js';*/
+import search from '../utils/searchbar.js';
 
 /*
 This function return the photographers data.
@@ -26,25 +26,28 @@ async function getTemplate() {
   This function will launch the factory and add the element in the DOM.
   */
   async function displayData(recipes, article) {
-    let ustensils = [];
+    /*let ustensils = [];
     let ingredients = [];
-    let appareils = [];
+    let appareils = [];*/
     
     
     recipes.forEach((recipe) => {
         RECIPES.push(recipe);
         RECIPES_IDS.push(recipe.id);
-        makeOptionList(recipe, ingredients, appareils, ustensils);
+        makeOptionList(recipe, INGREDIENTS_ARRAY, APPAREILS_ARRAY, USTENSILS_ARRAY);
         const recipeModel = recipeFactory(recipe, article);
         const recipeDOM = recipeModel.getRecipeDOM();
         RECIPES_SECTION.insertAdjacentHTML('beforeend', recipeDOM);
     });
-
-    addOptionInDataList(ingredients, appareils, ustensils);
+    console.log(RECIPES);
+    addOptionInDataList(INGREDIENTS_ARRAY, APPAREILS_ARRAY, USTENSILS_ARRAY);
     const DATALIST_OPTIONS = document.querySelectorAll('datalist option');
     initFilters(DATALIST_OPTIONS);
     
-    /*initSearchbar(recipes);*/
+    SEARCH_INPUT.addEventListener('input', () => {
+        search();
+    });
+
   }
 
 
