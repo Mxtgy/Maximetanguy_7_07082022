@@ -1,4 +1,5 @@
 import { FILTERS_INPUT, TAGS_SECTION } from './const.js';
+import search from './searchbar.js';
 
 /*
 This function toggle the list on the accurate filter
@@ -45,6 +46,7 @@ function clickOnOption(e) {
     const tag = createTag(option, optionDataParent);
     removeOptionFromList(option);
     TAGS_SECTION.insertAdjacentElement('afterbegin', tag);
+    search();
     tag.addEventListener('click', (e) => {
         addOptionInList(e);
     });
@@ -95,6 +97,7 @@ function addOptionInList(option) {
         }
     }
     option.target.remove();
+    search();
 }
 
 function initFilters(DATALIST_OPTIONS) {

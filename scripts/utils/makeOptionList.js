@@ -1,6 +1,6 @@
 function makeOptionList(recipe, ingredients, appareils, ustensils) {
-    if (appareils.indexOf(recipe.appliance) < 0) {
-        appareils.push(recipe.appliance);
+    if (appareils.indexOf(recipe.appliance.toLowerCase()) < 0) {
+        appareils.push(recipe.appliance.toLowerCase());
     }
     recipe.ustensils.forEach((ustensil) => {
         if (ustensils.indexOf(ustensil.toLowerCase()) < 0) {

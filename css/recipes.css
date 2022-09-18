@@ -93,3 +93,11 @@ RECIPES LIST
 .recipe-description {
     font-family: 'Roboto', sans-serif;
 }
+
+.no-recipe {
+    display: none;
+}
+
+.no-recipe.is-visible {
+    display: block;
+}
