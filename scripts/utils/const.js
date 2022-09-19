@@ -31,7 +31,7 @@ export const RECIPES_IDS = [];
 
 
 /*
-ustensils
+Array DATALIST
 */
 export const INGREDIENTS_ARRAY = [];
 export const APPAREILS_ARRAY = [];

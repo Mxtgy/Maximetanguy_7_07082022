@@ -26,10 +26,6 @@ async function getTemplate() {
   This function will launch the factory and add the element in the DOM.
   */
   async function displayData(recipes, article) {
-    /*let ustensils = [];
-    let ingredients = [];
-    let appareils = [];*/
-    
     
     recipes.forEach((recipe) => {
         RECIPES.push(recipe);
@@ -39,7 +35,6 @@ async function getTemplate() {
         const recipeDOM = recipeModel.getRecipeDOM();
         RECIPES_SECTION.insertAdjacentHTML('beforeend', recipeDOM);
     });
-    console.log(RECIPES);
     addOptionInDataList(INGREDIENTS_ARRAY, APPAREILS_ARRAY, USTENSILS_ARRAY);
     const DATALIST_OPTIONS = document.querySelectorAll('datalist option');
     initFilters(DATALIST_OPTIONS);
