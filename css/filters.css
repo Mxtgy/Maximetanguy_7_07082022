@@ -76,7 +76,7 @@ TRI
     opacity: .5;
 }
 
-.filter datalist {
+.filter .datalist {
     box-sizing: border-box;
     position: absolute;
     color: #FFFFFF;
@@ -99,7 +99,7 @@ TRI
     background-color: #ED6454;
 }
 
-.filter.active datalist {
+.filter.active .datalist {
     display: flex;
     text-align: center;
     z-index: 1;
