@@ -26,7 +26,7 @@ function searchInInput(e) {
     var elem = e.target;
     var parentElet = elem.parentElement;
     var value = elem.value.toUpperCase();
-    var list = parentElet.querySelectorAll('datalist option');
+    var list = parentElet.querySelectorAll('.datalist option');
     for (var p = 0; p < list.length; p++) {
         if (list[p].value.toUpperCase().indexOf(value) > -1) {
             list[p].style.display = 'block';
@@ -89,7 +89,7 @@ This function purpose is to look through the datalist and display back the optio
 to remove the tag from the tag section
 */
 function addOptionInList(option) {
-    var datalist_options = document.querySelectorAll('datalist option');
+    var datalist_options = document.querySelectorAll('.datalist option');
     var optionInList = option.target.innerText;
     for (var a = 0; a < datalist_options.length; a++) {
         if (datalist_options[a].value === optionInList) {

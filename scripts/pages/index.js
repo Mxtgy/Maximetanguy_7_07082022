@@ -36,7 +36,7 @@ async function getTemplate() {
         RECIPES_SECTION.insertAdjacentHTML('beforeend', recipeDOM);
     });
     addOptionInDataList(INGREDIENTS_ARRAY, APPAREILS_ARRAY, USTENSILS_ARRAY);
-    const DATALIST_OPTIONS = document.querySelectorAll('datalist option');
+    const DATALIST_OPTIONS = document.querySelectorAll('.datalist option');
     initFilters(DATALIST_OPTIONS);
     
     SEARCH_INPUT.addEventListener('input', () => {
