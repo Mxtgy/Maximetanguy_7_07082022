@@ -30,7 +30,7 @@
 
                 <span class="filter filter-ingredients">
                     <label class="label-ingredients" for="ingredients">Ingrédients</label>
-                    <input placeholder="Rechercher un ingrédient" autocomplete="off" role="combobox" name="data" class="filter-input" id="ingredients">
+                    <input placeholder="Rechercher un ingrédient" type="text" aria-expanded="undefined" autocomplete="off" role="combobox" list="undefined" name="data" class="filter-input" id="ingredients">
                     <datalist id="data-ingredients" class="data-ingredients" role="listbox">
                        
                     </datalist>
@@ -38,7 +38,7 @@
 
                 <span class="filter filter-appareils">
                     <label class="label-appareils" for="appareils">Appareils</label>
-                    <input placeholder="Rechercher un appareil" autocomplete="off"  role="combobox" name="data" class="filter-input" id="appareils">
+                    <input placeholder="Rechercher un appareil" type="text" aria-expanded="undefined" autocomplete="off"  role="combobox" list="undefined" name="data" class="filter-input" id="appareils">
                     <datalist id="data-appareils" class="data-appareils" role="listbox">
                        
                         
@@ -47,7 +47,7 @@
 
                 <span class="filter filter-ustensils">
                     <label class="label-ustensils" for="ustensils">Ustensils</label>
-                    <input placeholder="Rechercher un ustensil" autocomplete="off"  role="combobox" name="data" class="filter-input" id="ustensils">
+                    <input placeholder="Rechercher un ustensil" type="text" aria-expanded="undefined" autocomplete="off"  role="combobox" list="undefined" name="data" class="filter-input" id="ustensils">
                     <datalist id="data-ustensils" class="data-ustensils" role="listbox">
                        
                         
@@ -59,14 +59,13 @@
     </nav>
 
     <main>
-        <section class="recipes-list">
+        <div class="recipes-list">
             <span class="no-recipe">Aucune recette ne correspond à votre critère... vous pouvez chercher "tarte aux pommes", "poisson", etc...</span>
-        </section> 
+        </div> 
     </main>
 
 
     <script type="module" src="scripts/main.js"></script>
-    <!--<script type="module" src="scripts/utils/filters.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

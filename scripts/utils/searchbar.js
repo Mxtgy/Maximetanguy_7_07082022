@@ -125,7 +125,7 @@ function checkValuesIngredients(tagValues, arrayIDS) {
                 matchFound = true;
                 return true;
             }
-            return false;
+            return matchFound = false;
         });
 
         if (matchFound && arrayIDS.indexOf(recipe.id) > -1 ) {
@@ -152,7 +152,7 @@ function checkValuesUstensils(tagValues, arrayIDS) {
                 matchFound = true;
                 return true;
             }
-            return false;
+            return matchFound = false;
         });
 
         if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
@@ -178,7 +178,7 @@ function checkValuesAppareils(tagValues, arrayIDS) {
                 matchFound = true;
                 return true;
             }
-            return false;
+            return matchFound = false;
         });
 
         if (matchFound && arrayIDS.indexOf(recipe.id) > -1 ) {
