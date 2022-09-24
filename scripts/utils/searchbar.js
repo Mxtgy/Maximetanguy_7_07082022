@@ -8,7 +8,7 @@ function search() {
     arrayIDS = checkTags(arrayIDS, TAGS_INGREDIENTS);
     arrayIDS = checkTags(arrayIDS, TAGS_APPAREILS);
     arrayIDS = checkTags(arrayIDS, TAGS_USTENSILS);
-    arrayIDS = checkSearchBar(arrayIDS);
+    arrayIDS = checkSearchBar2(arrayIDS);
 
     updateRecipeListInDOM(arrayIDS, recipesDOM);
     updateDataList(arrayIDS);
@@ -202,28 +202,40 @@ function checkSearchBar(arrayIDS) {
     if (value.length < 3) {
         return arrayIDS; 
     }
+
+    /*const recipesFound = RECIPES.filter(recipe => {
+        return recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1 || recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase()).find(ing => ing.indexOf(value) > -1);
+    }).map(recipe => recipe.id);*/
     
     RECIPES.forEach(recipe => {
-        var matchFound = false;
+        if (arrayIDS.indexOf(recipe.id) > -1) {
 
-        const ingr = recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase());
+            var matchFound = false;
+
+            const ingr = recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase());
+            const some1 = (element) => element.indexOf(value) > -1;
             
-        if (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1) {
-            matchFound = true;
-        }
-
-        ingr.every(ingredient => {
-            if (ingredient.indexOf(value) > -1) {
+            if (arrayIDS.indexOf(recipe.id) > -1 && (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1 || ingr.some(some1))) {
                 matchFound = true;
-                return false;
             }
-        });
+        
 
-        if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
-            recipesFound.push(recipe.id);
+            /*ingr.every(ingredient => {
+                if (ingredient.indexOf(value) > -1) {
+                    matchFound = true;
+                    return false;
+                }
+            });
+
+            if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
+                recipesFound.push(recipe.id);
+            }*/
+            if (matchFound) {
+                recipesFound.push(recipe.id);
+            }
         }
     });
-
+    console.log(recipesFound);
     return recipesFound;
 
 }
@@ -243,6 +255,10 @@ function checkSearchBar2(arrayIDS) {
         var matchFound = false;
         var ingredients = [];
 
+        if (arrayIDS.indexOf(recipe.id) === -1) {
+            continue;
+        }
+        
         for (var n = 0; n < recipe.ingredients.length; n++) {
             ingredients.push(recipe.ingredients[n].ingredient.toLowerCase());
         }
