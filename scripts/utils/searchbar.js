@@ -56,51 +56,39 @@ function checkSearchBar(recipesIDS) {
     }
 
     if (value.length < 3) {
-        return recipesIDS; 
+        return recipesIDS;
     }
 
-    /* 
-    CODE PEU PERFORMANT MAIS COURT
-    ======================================================
-    const RECIPES2 = RECIPES.filter(recipe => arrayIDS.indexOf(recipe.id) > -1);
-    const recipesFound = RECIPES2.filter(recipe => {
-        return recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1 || recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase()).find(ing => ing.indexOf(value) > -1);
-    }).map(recipe => recipe.id);
-    ======================================================
-    */
-    
-    RECIPES.RECIPES.forEach(recipe => {
-        if (recipesIDS.indexOf(recipe.id) > -1) {
-            var matchFound = false;
-            const ingr = recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase());
+    for (var i = 0; i < RECIPES.RECIPES.length; i++) {
+        var recipe = RECIPES.RECIPES[i];
+        var matchFound = false;
+        var ingredients = [];
 
-            /* CODE ASSEZ PERFORMANT
-            ======================================================
-            const some1 = (element) => element.indexOf(value) > -1;
-            if (ingr.some(some1)) {
-                matchFound = true;
-            }
-            ======================================================
-            */
-
-            if (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1) {
-                matchFound = true;
-            }
-
-            ingr.every(ingredient => {
-                if (ingredient.indexOf(value) > -1) {
-                    matchFound = true;
-                    return false;
-                }
-            });
-
-            if (matchFound) {
-                recipesFound.push(recipe.id);
-            }
-
+        if (recipesIDS.indexOf(recipe.id) === -1) {
+            continue;
         }
-    });
 
+        for (var n = 0; n < recipe.ingredients.length; n++) {
+            ingredients.push(recipe.ingredients[n].ingredient.toLowerCase());
+        }
+
+        if (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1) {
+            matchFound = true;
+        }
+
+        for (var p = 0; p < ingredients.length; p++) {
+            if (ingredients[p].indexOf(value) > -1) {
+                matchFound = true;
+                break;
+            }
+        }
+
+        if (matchFound) {
+            recipesFound.push(recipe.id);
+        }
+
+    }
+    
     return recipesFound;
 
 }
