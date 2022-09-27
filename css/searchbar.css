@@ -1,14 +1,12 @@
 /*
 SEARCHBAR
 */
-
 form {
     margin-top: 1.5em;
 }
 .search {
     position: relative;
 }
-
 .search--input {
     position: relative;
     width: -webkit-fill-available;
@@ -20,12 +18,10 @@ form {
     padding: 1.5em 0;
     padding-left: 1.5em;
 }
-
 .search--input::placeholder {
     opacity: .25;
     color: #000;
 }
-
 .search .fa-search {
     position: absolute;
     color: #000;

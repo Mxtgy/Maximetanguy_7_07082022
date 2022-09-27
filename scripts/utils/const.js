@@ -1,38 +1,33 @@
-/*
-SEARCH INPUT
-*/
+/* DOM ELEMENTS */
+export const DOM = {
+    SEARCH_INPUT: document.querySelector('#js-search-input'),
+    FILTERS_INPUT: document.querySelectorAll('.filter-input'),
+    TAGS_SECTION: document.querySelector('.tags-section'),
+    RECIPES_SECTION: document.querySelector('.recipes-list'),
+    NO_RECIPE: document.querySelector('.no-recipe')
+}
 
-export const SEARCH_INPUT = document.querySelector('#js-search-input');
+export const DOM_FILTERS = {
+    INGREDIENTS: document.querySelector('.data-ingredients'),
+    APPAREILS: document.querySelector('.data-appareils'),
+    USTENSILS: document.querySelector('.data-ustensils')
+}
 
-/*
-FILTERS & TAGS
-*/
-export const FILTERS_INPUT = document.querySelectorAll('.filter-input');
-export const TAGS_SECTION = document.querySelector('.tags-section');
-export const FILTER_INGREDIENTS = document.querySelector('.data-ingredients');
-export const FILTER_APPAREILS = document.querySelector('.data-appareils');
-export const FILTER_USTENSILS = document.querySelector('.data-ustensils');
+/* TAGS TYPE */
+export const TAGS = {
+    INGREDIENTS: "INGREDIENTS",
+    APPAREILS: "APPAREILS",
+    USTENSILS: "USTENSILS"
+}
 
-export const TAGS_INGREDIENTS = "INGREDIENTS";
-export const TAGS_APPAREILS = "APPAREILS";
-export const TAGS_USTENSILS = "USTENSILS";
+/* ARRAYS TO STOCK DATA */
+export const LIST_ARRAY = {
+    INGREDIENTS: [],
+    APPAREILS: [],
+    USTENSILS: []
+}
 
-/*
-RECIPES GALERIE
-*/
-export const RECIPES_SECTION = document.querySelector('.recipes-list');
-export const NO_RECIPE = document.querySelector('.no-recipe');
-
-/*
-RECIPES
-*/
-export const RECIPES = [];
-export const RECIPES_IDS = [];
-
-
-/*
-Array DATALIST
-*/
-export const INGREDIENTS_ARRAY = [];
-export const APPAREILS_ARRAY = [];
-export const USTENSILS_ARRAY = [];
+export const RECIPES = {
+    RECIPES: [],
+    RECIPES_IDS: []
+}

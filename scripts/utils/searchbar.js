@@ -1,26 +1,32 @@
-import { SEARCH_INPUT, RECIPES_SECTION, NO_RECIPE, RECIPES, RECIPES_IDS, TAGS_SECTION, TAGS_INGREDIENTS, TAGS_USTENSILS, TAGS_APPAREILS, FILTER_INGREDIENTS, FILTER_APPAREILS, FILTER_USTENSILS } from './const.js';
-import makeOptionList from '../utils/makeOptionList.js';
+import { DOM, RECIPES, TAGS } from './const.js';
+import checkTags from '../utils/checkTags.js';
+import updateDataList from '../utils/updateDataList.js';
 
-
+/*
+Initiate the search.
+*/
 function search() {
-    var recipesDOM = RECIPES_SECTION.querySelectorAll('article');
-    var arrayIDS = RECIPES_IDS;
-    arrayIDS = checkTags(arrayIDS, TAGS_INGREDIENTS);
-    arrayIDS = checkTags(arrayIDS, TAGS_APPAREILS);
-    arrayIDS = checkTags(arrayIDS, TAGS_USTENSILS);
-    arrayIDS = checkSearchBar2(arrayIDS);
+    var recipesDOM = DOM.RECIPES_SECTION.querySelectorAll('article');
+    var recipesIDS = RECIPES.RECIPES_IDS;
+    recipesIDS = checkTags(recipesIDS, TAGS.INGREDIENTS);
+    recipesIDS = checkTags(recipesIDS, TAGS.APPAREILS);
+    recipesIDS = checkTags(recipesIDS, TAGS.USTENSILS);
+    recipesIDS = checkSearchBar(recipesIDS);
 
-    updateRecipeListInDOM(arrayIDS, recipesDOM);
-    updateDataList(arrayIDS);
+    updateRecipeListInDOM(recipesIDS, recipesDOM);
+    updateDataList(recipesIDS);
 
 }
 
-function updateRecipeListInDOM(arrayIDS, recipesDOM) {
-    NO_RECIPE.classList.remove('is-visible');
-    if (!arrayIDS || arrayIDS.length < 1) {
-        // AFFICHAGE NO RESULTS
+/*
+This function is updating the recipes list in the DOM according to
+the search results.
+*/
+function updateRecipeListInDOM(recipesIDS, recipesDOM) {
+    DOM.NO_RECIPE.classList.remove('is-visible');
+    if (!recipesIDS || recipesIDS.length < 1) {
 
-        NO_RECIPE.classList.add('is-visible');
+        DOM.NO_RECIPE.classList.add('is-visible');
         for (var i = 0; i < recipesDOM.length; i++) {
             recipesDOM[i].style.display = 'none';
         }
@@ -28,7 +34,7 @@ function updateRecipeListInDOM(arrayIDS, recipesDOM) {
     }
     
     for (var j = 0; j < recipesDOM.length; j++) {        
-        if (arrayIDS.indexOf(parseInt(recipesDOM[j].id)) > -1) {
+        if (recipesIDS.indexOf(parseInt(recipesDOM[j].id)) > -1) {
             recipesDOM[j].style.display = 'flex';
             continue;
         }
@@ -38,227 +44,88 @@ function updateRecipeListInDOM(arrayIDS, recipesDOM) {
 
 }
 
-function updateDataList(arrayIDS) {
-    var ingrArr = [];
-    var appArr = [];
-    var ustArr = [];
-    var ingr = [...TAGS_SECTION.querySelectorAll('.tag-ingredients')].map(tag => tag.innerText.toLowerCase());
-    var appareils = [...TAGS_SECTION.querySelectorAll('.tag-appareils')].map(tag => tag.innerText.toLowerCase());
-    var ustensils = [...TAGS_SECTION.querySelectorAll('.tag-ustensils')].map(tag => tag.innerText.toLowerCase());
-    RECIPES.forEach(recipe => {
-        if (arrayIDS.indexOf(recipe.id) > -1) {
-            makeOptionList(recipe, ingrArr, appArr, ustArr);
-        }
-    });
+/*
+This function search a match in the recipes with the value entered in the searchbar
+*/
+function checkSearchBar(recipesIDS) {
+    var value = DOM.SEARCH_INPUT.value.toLowerCase();
+    var recipesFound = [];
 
-    var ingrData = FILTER_INGREDIENTS.querySelectorAll('option');
-    var appData = FILTER_APPAREILS.querySelectorAll('option');
-    var ustData  = FILTER_USTENSILS.querySelectorAll('option');
-    for (var k = 0; k < ingrData.length; k++) {
-        if (ingrArr.indexOf(ingrData[k].value.toLowerCase()) > -1 && ingr.indexOf(ingrData[k].value.toLowerCase()) < 0) {
-            ingrData[k].classList.remove('option-none');
-            continue;
-        }
-        ingrData[k].classList.add('option-none');
-    }
-
-    for (var l = 0; l < appData.length; l++) {
-        if (appArr.indexOf(appData[l].value.toLowerCase()) > -1 && appareils.indexOf(appData[l].value.toLowerCase()) < 0) {
-            appData[l].classList.remove('option-none');
-            continue;
-        }
-        appData[l].classList.add('option-none');
-    }
-
-    for (var m = 0; m < ustData.length; m++) {
-        if (ustArr.indexOf(ustData[m].value.toLowerCase()) > -1 && ustensils.indexOf(ustData[m].value.toLowerCase()) < 0) {
-            ustData[m].classList.remove('option-none');
-            continue;
-        }
-        ustData[m].classList.add('option-none');
-    }
-}
-
-function checkTags(arrayIDS, tagType) {
-    if (!arrayIDS || arrayIDS.length == 0) {
+    if (!recipesIDS || recipesIDS.length == 0) {
         return false;
     }
-    var tagValues = [];
-    switch (tagType) {
-        case "INGREDIENTS":
-            tagValues = [...TAGS_SECTION.querySelectorAll('.tag-ingredients')].map(tag => tag.innerText.toLowerCase());
-            
-            if (tagValues.length > 0) {
-                return arrayIDS = checkValuesIngredients(tagValues, arrayIDS);
-            }
-            break;
-        case "APPAREILS":
-            tagValues = [...TAGS_SECTION.querySelectorAll('.tag-appareils')].map(tag => tag.innerText.toLowerCase());
 
-            if (tagValues.length > 0) {
-                return arrayIDS = checkValuesAppareils(tagValues, arrayIDS);
-            }
-            break;
-        case "USTENSILS":
-            tagValues = [...TAGS_SECTION.querySelectorAll('.tag-ustensils')].map(tag => tag.innerText.toLowerCase());
-            
-            if (tagValues.length > 0) {
-                return arrayIDS = checkValuesUstensils(tagValues, arrayIDS);
-            }
-            break;
-        default:
-            console.log('err');
-            break;
-    }
-
-    return arrayIDS;
-}
-
-function checkValuesIngredients(tagValues, arrayIDS) {
-    var recipesFound = [];
-    RECIPES.forEach(recipe => {
-        var matchFound = false;
-        const arp = recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase());
-
-        tagValues.every(tag => {
-            if (arp.indexOf(tag) > -1) {
-                matchFound = true;
-                return true;
-            }
-            return matchFound = false;
-        });
-
-        if (matchFound && arrayIDS.indexOf(recipe.id) > -1 ) {
-            recipesFound.push(recipe.id);
-        }
-
-    });
-
-    if (recipesFound.length > 0) {
-        return recipesFound;
-    }
-
-    return false;
-}
-
-function checkValuesUstensils(tagValues, arrayIDS) {
-    var recipesFound = [];
-    RECIPES.forEach(recipe => {
-        var matchFound = false;
-        const ust = recipe.ustensils.map(ust => ust.toLowerCase());
-
-        tagValues.every(tag => {
-            if (ust.indexOf(tag) > -1) {
-                matchFound = true;
-                return true;
-            }
-            return matchFound = false;
-        });
-
-        if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
-            recipesFound.push(recipe.id);
-        }
-    });
-
-    if (recipesFound.length > 0) {
-        return recipesFound;
-    }
-    return false;
-
-}
-
-function checkValuesAppareils(tagValues, arrayIDS) {
-    var recipesFound = [];
-    RECIPES.forEach(recipe => {
-        var matchFound = false;
-        const appareils = recipe.appliance.toLowerCase();
-
-        tagValues.every(tag => {
-            if (appareils.indexOf(tag) > -1) {
-                matchFound = true;
-                return true;
-            }
-            return matchFound = false;
-        });
-
-        if (matchFound && arrayIDS.indexOf(recipe.id) > -1 ) {
-            recipesFound.push(recipe.id);
-        }
-    });
-
-    if (recipesFound.length > 0) {
-        return recipesFound;
-    }
-    return false;
-
-}
-
-function checkSearchBar(arrayIDS) {
-    var value = SEARCH_INPUT.value.toLowerCase();
-    var recipesFound = [];
-    if (!arrayIDS || arrayIDS.length == 0) {
-        return false;
-    }
     if (value.length < 3) {
-        return arrayIDS; 
+        return recipesIDS; 
     }
 
-    /*const recipesFound = RECIPES.filter(recipe => {
+    /* 
+    CODE PEU PERFORMANT MAIS COURT
+    ======================================================
+    const RECIPES2 = RECIPES.filter(recipe => arrayIDS.indexOf(recipe.id) > -1);
+    const recipesFound = RECIPES2.filter(recipe => {
         return recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1 || recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase()).find(ing => ing.indexOf(value) > -1);
-    }).map(recipe => recipe.id);*/
+    }).map(recipe => recipe.id);
+    ======================================================
+    */
     
-    RECIPES.forEach(recipe => {
-        if (arrayIDS.indexOf(recipe.id) > -1) {
-
+    RECIPES.RECIPES.forEach(recipe => {
+        if (recipesIDS.indexOf(recipe.id) > -1) {
             var matchFound = false;
-
             const ingr = recipe.ingredients.map(ingr => ingr.ingredient.toLowerCase());
+
+            /* CODE ASSEZ PERFORMANT
+            ======================================================
             const some1 = (element) => element.indexOf(value) > -1;
-            
-            if (arrayIDS.indexOf(recipe.id) > -1 && (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1 || ingr.some(some1))) {
+            if (ingr.some(some1)) {
                 matchFound = true;
             }
-        
+            ======================================================
+            */
 
-            /*ingr.every(ingredient => {
+            if (recipe.name.toLowerCase().indexOf(value) > -1 || recipe.description.toLowerCase().indexOf(value) > -1) {
+                matchFound = true;
+            }
+
+            ingr.every(ingredient => {
                 if (ingredient.indexOf(value) > -1) {
                     matchFound = true;
                     return false;
                 }
             });
 
-            if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
-                recipesFound.push(recipe.id);
-            }*/
             if (matchFound) {
                 recipesFound.push(recipe.id);
             }
+
         }
     });
-    console.log(recipesFound);
+
     return recipesFound;
 
 }
 
-function checkSearchBar2(arrayIDS) {
-    var value = SEARCH_INPUT.value.toLowerCase();
+function checkSearchBar2(recipesIDS) {
+    var value = DOM.SEARCH_INPUT.value.toLowerCase();
     var recipesFound = [];
-    if (!arrayIDS || arrayIDS.length == 0) {
+
+    if (!recipesIDS || recipesIDS.length == 0) {
         return false;
     }
+
     if (value.length < 3) {
-        return arrayIDS;
+        return recipesIDS;
     }
 
-    for (var i = 0; i < RECIPES.length; i++) {
-        var recipe = RECIPES[i];
+    for (var i = 0; i < RECIPES.RECIPES.length; i++) {
+        var recipe = RECIPES.RECIPES[i];
         var matchFound = false;
         var ingredients = [];
 
-        if (arrayIDS.indexOf(recipe.id) === -1) {
+        if (recipesIDS.indexOf(recipe.id) === -1) {
             continue;
         }
-        
+
         for (var n = 0; n < recipe.ingredients.length; n++) {
             ingredients.push(recipe.ingredients[n].ingredient.toLowerCase());
         }
@@ -274,12 +141,12 @@ function checkSearchBar2(arrayIDS) {
             }
         }
 
-        if (matchFound && arrayIDS.indexOf(recipe.id) > -1) {
+        if (matchFound) {
             recipesFound.push(recipe.id);
         }
 
     }
-
+    
     return recipesFound;
 
 }

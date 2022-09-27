@@ -1,3 +1,6 @@
+/*
+  Function that return the building function.
+*/
 function recipeFactory(data, article) {
   
   /*

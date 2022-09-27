@@ -1,22 +1,20 @@
-import { FILTERS_INPUT, TAGS_SECTION } from './const.js';
+import { DOM } from './const.js';
 import search from './searchbar.js';
 
 /*
 This function toggle the list on the accurate filter
 */
-function addOptionClickEvent(i) {
-    i.classList.toggle('active');
+function toggleFilter(parentFilter) {
+    parentFilter.classList.toggle('active');
 }
 
 /*
 This function initiate the display of the list on the accurate filter 
 */
 function initList(e) {
-    
     var targetInput = e.target;
     var parentFilter = targetInput.parentElement;
-    addOptionClickEvent(parentFilter);
-
+    toggleFilter(parentFilter);
 }
 
 /*
@@ -24,9 +22,9 @@ This function display the options matching the user input and hide the rest
 */
 function searchInInput(e) {
     var elem = e.target;
-    var parentElet = elem.parentElement;
+    var parentElement = elem.parentElement;
     var value = elem.value.toUpperCase();
-    var list = parentElet.querySelectorAll('.datalist option');
+    var list = parentElement.querySelectorAll('.datalist option');
     for (var p = 0; p < list.length; p++) {
         if (list[p].value.toUpperCase().indexOf(value) > -1) {
             list[p].style.display = 'block';
@@ -45,15 +43,15 @@ function clickOnOption(e) {
     var optionDataParent = option.parentElement;
     const tag = createTag(option, optionDataParent);
     removeOptionFromList(option);
-    TAGS_SECTION.insertAdjacentElement('afterbegin', tag);
+    DOM.TAGS_SECTION.insertAdjacentElement('afterbegin', tag);
     search();
     tag.addEventListener('click', (e) => {
-        addOptionInList(e);
+        addOptionBackInList(e);
     });
 }
 
 /*
-This function create tag and return the HTMl
+This function create tag and return the HTML
 */
 function createTag(option, optionDataParent) {
     var optionValue = option.value;
@@ -73,6 +71,7 @@ function createTag(option, optionDataParent) {
         default:
             break;
     }
+
     return optionHTML;
 
 }
@@ -88,7 +87,7 @@ function removeOptionFromList(option) {
 This function purpose is to look through the datalist and display back the option,
 to remove the tag from the tag section
 */
-function addOptionInList(option) {
+function addOptionBackInList(option) {
     var datalist_options = document.querySelectorAll('.datalist option');
     var optionInList = option.target.innerText;
     for (var a = 0; a < datalist_options.length; a++) {
@@ -103,20 +102,20 @@ function addOptionInList(option) {
 function initFilters(DATALIST_OPTIONS) {
 
     // Events added on the filters inputs for the focus, focusout and typing in
-    for (var i = 0; i < FILTERS_INPUT.length; i++) {
-        FILTERS_INPUT[i].addEventListener('focus', (e) => {
+    for (var i = 0; i < DOM.FILTERS_INPUT.length; i++) {
+        DOM.FILTERS_INPUT[i].addEventListener('focus', (e) => {
             initList(e);
         });
         
-        FILTERS_INPUT[i].addEventListener('focusout', (e) => {
+        DOM.FILTERS_INPUT[i].addEventListener('focusout', (e) => {
                 var targetInput = e.target;
                 var parentFilter = targetInput.parentElement;
-                addOptionClickEvent(parentFilter);
+                toggleFilter(parentFilter);
                 targetInput.value = '';
                 searchInInput(e);
         });
     
-        FILTERS_INPUT[i].addEventListener('input', (e) => {
+        DOM.FILTERS_INPUT[i].addEventListener('input', (e) => {
             searchInInput(e);
         });
     
