@@ -5,15 +5,12 @@ TRI
     text-align: left;
     margin-top: 1em;
 }
-
-
 .filter {
     display: inline-flex;
     position: relative;
     width: 13%;
     margin-right: .8em;
 }
-
 .filter::after {
     content: '\f077';
     font-family: 'Font Awesome 5 Free';
@@ -25,11 +22,9 @@ TRI
     transform: rotate(180deg);
     cursor: pointer;
 }
-
 .filter.active {
     width: 50%;
 }
-
 .filter.active::after {
     transform: rotate(0);
     right: 3%;
@@ -53,7 +48,6 @@ TRI
     width: 100%;
     cursor: pointer;
 }
-
 #ingredients {
     background-color: #3282F7;
 }
@@ -67,7 +61,6 @@ TRI
     color: #ffffff;
     opacity: 0;
 }
-
 .filter.active .filter-input {
     border-radius: 5px 5px 0 0;
     padding-left: 3.5%;
@@ -75,7 +68,6 @@ TRI
 .filter.active .filter-input::placeholder {
     opacity: .5;
 }
-
 .filter .datalist {
     box-sizing: border-box;
     position: absolute;
@@ -88,7 +80,6 @@ TRI
     padding: .1em 1em 1em 1.5em;
     justify-content: space-between;
 }
-
 .filter .data-ingredients {
     background-color: #3282F7;
 }
@@ -98,13 +89,11 @@ TRI
 .filter .data-ustensils {
     background-color: #ED6454;
 }
-
 .filter.active .datalist {
     display: flex;
     text-align: center;
     z-index: 1;
 }
-
 .filter option {
     max-width: 27%;
     width: 100%;
@@ -118,7 +107,6 @@ TRI
     text-overflow: ellipsis;
     pointer-events: all;
 }
-
 .filter .option-none {
     display: none!important;
 }

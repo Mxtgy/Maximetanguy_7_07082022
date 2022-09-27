@@ -6,7 +6,6 @@ RECIPES LIST
     flex-flow: wrap;
     justify-content: space-between;
 }
-
 .recipes-list article {
     display: flex;
     flex-direction: column;
@@ -23,16 +22,13 @@ RECIPES LIST
 .recipes-list article figure img {
     width: 100%;
 }
-
 .recipe-wrap {
     padding: 1.2em;
 }
-
 .recipe-head, .recipe-bottom  {
     display: flex;
     justify-content: space-between;
 }
-
 .recipe-head {
     margin-bottom: .5em;
     align-items: baseline;
@@ -45,7 +41,6 @@ RECIPES LIST
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    
 }
 .recipe-time {
     position: relative;
@@ -67,7 +62,6 @@ RECIPES LIST
     justify-content: space-between;
     text-align: left;
 }
-
 .recipe-bottom strong {
     font-weight: 700;
 }
@@ -75,29 +69,24 @@ RECIPES LIST
     list-style: none;
     padding: 0;
 }
-
 .recipe-ingredients, .recipe-description {
     max-width: 48%;
     display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
 }
-
 .recipe-ingredients li {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .recipe-description {
     font-family: 'Roboto', sans-serif;
 }
-
 .no-recipe {
     display: none;
 }
-
 .no-recipe.is-visible {
     display: block;
 }

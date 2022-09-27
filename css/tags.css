@@ -6,7 +6,6 @@ TAGS
     text-align: left;
     flex-flow: wrap;
 }
-
 .tags-section .tag {
     position: relative;
     color: #FFF;
@@ -16,7 +15,6 @@ TAGS
     cursor: pointer;
     margin: 1.7em .5em 0em 0;
 }
-
 .tags-section .tag::after {
     content: '\f057';
     position: absolute;
@@ -27,15 +25,12 @@ TAGS
     right: 10%;
     font-size: 1.3em;
 }
-
 .tag-ingredients {
     background-color: #3282F7;
 }
-
 .tag-appareils {
     background-color: #68D9A4;
 }
-
 .tag-ustensils {
     background-color: #ED6454;
 }
